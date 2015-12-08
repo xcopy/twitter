@@ -7,6 +7,8 @@
 # Ignore RubyMine project folder.
 .idea/
 
+.zeus.sock
+
 # Ignore bundler config.
 /.bundle
 
