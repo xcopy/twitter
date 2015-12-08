@@ -54,3 +54,5 @@ group :development do
   # this gems should be installed standalone
   # zeus, mailcatcher
 end
+
+ruby '2.2.0'
