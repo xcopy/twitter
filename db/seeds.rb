@@ -6,25 +6,29 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 
 # register some fake users
-10.times do
-  username = Faker::Internet.user_name
-  password = Faker::Internet.password
-
-  User.new({
-    username: username,
-    email: Faker::Internet.free_email(username),
-    password: password,
-    password_confirmation: password
-  }).save(validate: false)
-end
-
-# register my user
-User.new({
-  username: 'xcopy',
+users = [{
+  full_name: 'Kairat Jenishev',
+  screen_name: 'xcopy',
   email: 'xcopy@gmail.com',
   password: 'password',
   password_confirmation: 'password'
-}).save(validate: false)
+}]
+
+10.times do
+  screen_name = Faker::Internet.user_name
+
+  users << {
+    full_name: Faker::Name.name,
+    screen_name: screen_name,
+    email: Faker::Internet.free_email(screen_name),
+    password: 'password',
+    password_confirmation: 'password'
+  }
+end
+
+users.each do |user|
+  User.new(user).save(validate: false)
+end
 
 # add some fake statuses
 User.all.each do |user|
