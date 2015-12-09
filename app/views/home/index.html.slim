@@ -1,1 +1,24 @@
-h1 Welcome
+.row
+  .col-md-3
+    .panel.panel-default
+      .panel-heading
+        strong
+          = "@#{current_user.username}"
+      .panel-body
+        .row
+          / todo
+          .col-md-4 Tweets 15
+          .col-md-4 Following 20
+          .col-md-4 Followers 50
+  .col-md-6
+    - if current_user.statuses.any?
+      - current_user.statuses.each do |status|
+        .panel.panel-default
+          .panel-body
+            strong = "@#{current_user.username}"
+            div = status.text
+  .col-md-3
+    .panel.panel-default
+      .panel-heading Who to follow
+      / todo
+      .panel-body ---

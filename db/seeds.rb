@@ -25,3 +25,12 @@ User.new({
   password: 'password',
   password_confirmation: 'password'
 }).save(validate: false)
+
+# add some fake statuses
+User.all.each do |user|
+  10.times do
+    user.statuses.create({
+      text: Faker::Lorem.paragraph(4, true)
+    })
+  end
+end

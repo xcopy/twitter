@@ -23,3 +23,7 @@
 body {
   padding-top: 70px;
 }
+
+.panel {
+  @include box-shadow(none)
+}
