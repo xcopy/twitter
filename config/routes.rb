@@ -16,4 +16,8 @@ Rails.application.routes.draw do
       sign_out: :logout,
       sign_up: :signup
     }
+
+  # resources :users, path: '', only: [:show]
+  # or:
+  get '/:id', to: 'users#show', as: :user, constraints: {id: /[a-zA-Z0-9_.]+/}
 end

@@ -3,7 +3,7 @@
     .panel.panel-default
       .panel-heading
         strong
-          = link_to "@#{current_user.username}", user_path(current_user.username)
+          = "@#{@user.username}"
       .panel-body
         .row
           / todo
@@ -11,7 +11,7 @@
           .col-md-4 Following 20
           .col-md-4 Followers 50
   .col-md-6
-    = render partial: 'users/timeline', locals: {statuses: current_user.statuses}
+    = render partial: 'users/timeline', locals: {statuses: @user.statuses}
   .col-md-3
     .panel.panel-default
       .panel-heading Who to follow
