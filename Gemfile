@@ -61,6 +61,9 @@ group :development do
   # Better error page for Rack apps. Read more: https://github.com/charliesome/better_errors
   gem 'better_errors'
 
+  # Use Chrome extension for development. Read more: https://github.com/dejan/rails_panel
+  gem 'meta_request'
+
   # this gems should be installed standalone
   # zeus, mailcatcher
 end
