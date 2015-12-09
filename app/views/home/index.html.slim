@@ -3,13 +3,22 @@
     .panel.panel-default
       .panel-heading
         strong
-          = link_to current_user.full_name}, user_path(current_user.screen_name)
+          = link_to current_user.full_name, user_path(current_user.screen_name)
       .panel-body
         .row
-          / todo
-          .col-md-4 Tweets 15
-          .col-md-4 Following 20
-          .col-md-4 Followers 50
+          .col-md-4
+            | Tweets
+            br
+              / todo
+              = current_user.statuses.count
+          .col-md-4
+            | Following
+            br
+              = current_user.following_count
+          .col-md-4
+            | Followers
+            br
+              = current_user.followers_count
   .col-md-6
     = render partial: 'users/timeline', locals: {statuses: current_user.statuses}
   .col-md-3

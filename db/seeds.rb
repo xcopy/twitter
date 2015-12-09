@@ -32,9 +32,17 @@ end
 
 # add some fake statuses
 User.all.each do |user|
-  10.times do
+  rand(11..20).times do
     user.statuses.create({
       text: Faker::Lorem.paragraph(4, true)
     })
+  end
+end
+
+# create relationships
+User.all.each do |user|
+  rand(1..10).times do
+    sample_user = User.where.not(id: user.id).sample
+    user.follow(sample_user) unless user.following?(sample_user)
   end
 end
