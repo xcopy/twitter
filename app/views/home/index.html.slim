@@ -20,7 +20,7 @@
             br
               = current_user.followers_count
   .col-md-6
-    = render partial: 'users/timeline', locals: {statuses: current_user.statuses}
+    = render partial: 'users/timeline', locals: {statuses: current_user.feed}
   .col-md-3
     .panel.panel-default
       .panel-heading Who to follow

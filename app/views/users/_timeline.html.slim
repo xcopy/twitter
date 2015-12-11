@@ -3,7 +3,12 @@
     - statuses.each do |status|
       .panel.panel-default
         .panel-body
-          = link_to user_path(status.user_screen_name) do
-            span =' status.user_full_name
-            span.text-muted = "@#{status.user_screen_name}"
-          div style="margin-top:10px;" = status.text
+          .status
+            .row
+              .col-md-6
+                = link_to(status.user_full_name, user_path(status.user_screen_name)) + "\n"
+                span.text-muted = "@#{status.user_screen_name}"
+              .col-md-6
+                .text-right
+                  small.text-muted = status.created_at
+            .text = status.text

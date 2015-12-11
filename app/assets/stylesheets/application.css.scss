@@ -27,3 +27,11 @@ body {
 .panel {
   @include box-shadow(none)
 }
+
+#timeline {
+  .status {
+    .text {
+      margin-top: 10px;
+    }
+  }
+}

@@ -38,4 +38,13 @@ class User < ActiveRecord::Base
   def following?(other_user)
     following.include?(other_user)
   end
+
+  def feed
+    user_ids = following.pluck(:id)
+    user_ids << id
+
+    Status.includes(:user).where(user_id: user_ids)
+
+    # statuses + Status.includes(:user).where(user: following)
+  end
 end
