@@ -47,4 +47,8 @@ class User < ActiveRecord::Base
 
     # statuses + Status.includes(:user).where(user: following)
   end
+
+  def recent_status
+    statuses.last
+  end
 end

@@ -1,0 +1,14 @@
+.row
+  .col-md-3
+    = render partial: 'users/sidebar', locals: {user: @user}
+  .col-md-9
+    .row
+      - users.each do |user|
+        .col-md-4
+          .card
+            .panel.panel-default
+              .panel-heading
+                = link_to user.full_name, user_path(user.screen_name)
+                .text-muted = "@#{user.screen_name}"
+              .panel-body
+                .recent_status = truncate(user.recent_status.text, length: 200) unless user.recent_status.nil?

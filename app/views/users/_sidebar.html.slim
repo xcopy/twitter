@@ -12,8 +12,8 @@
       .col-md-4
         | Following
         br
-          = user.following_count
+          = link_to user.following_count, following_user_path(user.screen_name)
       .col-md-4
         | Followers
         br
-          = user.followers_count
+          = link_to user.followers_count, followers_user_path(user.screen_name)

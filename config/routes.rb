@@ -17,7 +17,16 @@ Rails.application.routes.draw do
       sign_up: :signup
     }
 
-  # resources :users, path: '', only: [:show]
+  constraints(id: /[a-zA-Z0-9_.]+/) do
+    resources :users, path: '', only: [:show] do
+      member do
+        get :following, :followers
+      end
+
+      resources :statuses, only: [:show], constraints: {id: /\d+/}
+    end
+  end
+
   # or:
-  get '/:id', to: 'users#show', as: :user, constraints: {id: /[a-zA-Z0-9_.]+/}
+  # get '/:id', to: 'users#show', as: :user, constraints: {id: /[a-zA-Z0-9_.]+/}
 end
