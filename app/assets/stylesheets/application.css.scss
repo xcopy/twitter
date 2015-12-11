@@ -28,13 +28,25 @@ body {
   @include box-shadow(none)
 }
 
-#timeline {
-  .status {
-    .text {
-      margin-top: 10px;
+#feed {
+  .panel {
+    &:not(:last-child) {
+      margin-bottom: 0;
+      border-bottom: 0;
+      @include border-bottom-radius(0)
     }
-    .actions {
-      margin-top: 20px;
+
+    &:not(:first-child) {
+      @include border-top-radius(0)
+    }
+
+    .status {
+      .text {
+        margin-top: 10px;
+      }
+      .actions {
+        margin-top: 15px;
+      }
     }
   }
 }

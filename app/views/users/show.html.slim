@@ -2,7 +2,7 @@
   .col-md-3
     = render partial: 'users/sidebar', locals: {user: @user}
   .col-md-6
-    = render partial: 'users/timeline', locals: {statuses: @user.statuses}
+    = render partial: 'users/feed', locals: {statuses: @user.statuses}
   .col-md-3
     .panel.panel-default
       .panel-heading Who to follow
