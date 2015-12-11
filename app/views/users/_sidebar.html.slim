@@ -1,0 +1,19 @@
+.panel.panel-default
+  .panel-heading
+    strong
+      = link_to user.full_name, user_path(user.screen_name)
+      .text-muted = "@#{user.screen_name}"
+  .panel-body
+    .row
+      .col-md-4
+        | Tweets
+        br
+          = link_to user.statuses_count, user_path(user.screen_name)
+      .col-md-4
+        | Following
+        br
+          = user.following_count
+      .col-md-4
+        | Followers
+        br
+          = user.followers_count

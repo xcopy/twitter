@@ -10,5 +10,15 @@
                 span.text-muted = "@#{status.user_screen_name}"
               .col-md-6
                 .text-right
-                  small.text-muted = status.created_at
+                  small.text-muted = distance_of_time_in_words(Time.now, status.created_at)
             .text = status.text
+            .actions.text-muted
+              .row
+                .col-md-2
+                  = icon(:reply)
+                .col-md-2
+                  = icon(:retweet)
+                .col-md-2
+                  = icon(:heart)
+                .col-md-6
+                  = icon('ellipsis-h')

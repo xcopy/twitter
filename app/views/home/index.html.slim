@@ -1,24 +1,6 @@
 .row
   .col-md-3
-    .panel.panel-default
-      .panel-heading
-        strong
-          = link_to current_user.full_name, user_path(current_user.screen_name)
-      .panel-body
-        .row
-          .col-md-4
-            | Tweets
-            br
-              / todo
-              = current_user.statuses_count
-          .col-md-4
-            | Following
-            br
-              = current_user.following_count
-          .col-md-4
-            | Followers
-            br
-              = current_user.followers_count
+    = render partial: 'users/sidebar', locals: {user: current_user}
   .col-md-6
     = render partial: 'users/timeline', locals: {statuses: current_user.feed}
   .col-md-3
