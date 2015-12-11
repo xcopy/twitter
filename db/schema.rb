@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151209110149) do
+ActiveRecord::Schema.define(version: 20151211070446) do
 
   create_table "relationships", force: :cascade do |t|
     t.integer  "follower_id", limit: 4
@@ -50,6 +50,7 @@ ActiveRecord::Schema.define(version: 20151209110149) do
     t.string   "screen_name",            limit: 255
     t.integer  "following_count",        limit: 4,   default: 0
     t.integer  "followers_count",        limit: 4,   default: 0
+    t.integer  "statuses_count",         limit: 4,   default: 0
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
