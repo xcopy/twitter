@@ -13,4 +13,16 @@
 //= require jquery
 //= require jquery_ujs
 // require bootstrap-sprockets
+//= require moment
 //= require_tree .
+
+(function ($) {
+    $(function () {
+        var now = moment();
+
+        $('time.moment').each(function (i, element) {
+            var time = moment($(element).attr('datetime'));
+            $(element).html(time.from(now));
+        });
+    });
+})(jQuery);

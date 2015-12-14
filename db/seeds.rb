@@ -33,9 +33,11 @@ end
 # add some fake statuses
 User.all.each do |user|
   rand(11..20).times do
+    ts = Time.zone.now - [rand(1..3).days, rand(1..23).hours, rand(1..59).minutes].sample
     user.statuses.create({
       text: Faker::Lorem.paragraph(4, true),
-      created_at: Time.now - [rand(1..3).days, rand(1..23).hours, rand(1..59).minutes].sample
+      created_at: ts,
+      updated_at: ts
     })
   end
 end

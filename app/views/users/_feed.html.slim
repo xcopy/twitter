@@ -10,7 +10,7 @@
                 span.text-muted = "@#{status.user_screen_name}"
               .col-md-6
                 .text-right
-                  small.text-muted = distance_of_time_in_words(Time.now, status.created_at)
+                  time.text-muted.moment datetime="#{status.created_at.iso8601}"
             .text = status.text
             .actions.text-muted
               .row

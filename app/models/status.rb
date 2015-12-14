@@ -8,8 +8,4 @@ class Status < ActiveRecord::Base
   after_create do |record|
     record.user.increment!(:statuses_count)
   end
-
-  def created_at
-    super.strftime '%d %b %Y, %H:%M'
-  end
 end
