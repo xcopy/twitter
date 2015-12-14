@@ -10,7 +10,7 @@
                 span.text-muted = "@#{status.user_screen_name}"
               .col-md-6
                 .text-right
-                  time.text-muted.moment datetime="#{status.created_at.iso8601}"
+                  time.text-muted datetime="#{status.created_at.iso8601}" data-livestamp="#{status.created_at.iso8601}"
             .text = status.text
             .actions.text-muted
               .row
