@@ -8,6 +8,7 @@
 .idea/
 
 .zeus.sock
+public/rails_best_practices.html
 
 # Ignore bundler config.
 /.bundle

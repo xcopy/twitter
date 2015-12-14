@@ -1,6 +1,6 @@
 .row
   .col-md-3
-    = render partial: 'users/sidebar', locals: {user: @user}
+    = render 'users/sidebar', user: @user
   .col-md-9
     .row
       - users.each do |user|

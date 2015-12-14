@@ -1,8 +1,8 @@
 .row
   .col-md-3
-    = render partial: 'users/sidebar', locals: {user: current_user}
+    = render 'users/sidebar', user: current_user
   .col-md-6
-    = render partial: 'users/feed', locals: {statuses: current_user.feed}
+    = render 'users/feed', statuses: current_user.feed
   .col-md-3
     .panel.panel-default
       .panel-heading Who to follow

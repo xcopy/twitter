@@ -49,6 +49,6 @@ class User < ActiveRecord::Base
   end
 
   def recent_status
-    statuses.last
+    statuses.first
   end
 end
