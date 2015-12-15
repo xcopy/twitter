@@ -22,6 +22,15 @@ class User < ActiveRecord::Base
     end
   end
 
+  def as_json(options = nil)
+    defaults = {
+      only: [:id, :full_name, :screen_name],
+      # methods: [...]
+    }
+
+    super(defaults.merge(options || {}))
+  end
+
   has_many :statuses
 
   # relationships
@@ -40,6 +49,13 @@ class User < ActiveRecord::Base
 
   def following?(other_user)
     following.include?(other_user)
+  end
+
+  def who_to_follow
+    ids = following.pluck(:id)
+    ids << id
+
+    User.where.not(id: ids)
   end
 
   def feed

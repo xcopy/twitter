@@ -73,6 +73,7 @@ end
 source 'https://rails-assets.org' do
   gem 'rails-assets-momentjs'
   gem 'rails-assets-livestampjs'
+  gem 'rails-assets-angular'
 end
 
 ruby '2.2.0'

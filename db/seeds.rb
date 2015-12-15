@@ -14,7 +14,7 @@ users = [{
   password_confirmation: 'password'
 }]
 
-10.times do
+20.times do
   screen_name = Faker::Internet.user_name
 
   users << {

@@ -4,7 +4,4 @@
   .col-md-6
     = render 'users/feed', statuses: current_user.feed
   .col-md-3
-    .panel.panel-default
-      .panel-heading Who to follow
-      / todo
-      .panel-body ---
+    = render 'users/who_to_follow'

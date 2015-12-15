@@ -17,6 +17,8 @@ Rails.application.routes.draw do
       sign_up: :signup
     }
 
+  get :who_to_follow, to: 'users#who_to_follow'
+
   constraints(id: /[a-zA-Z0-9_.]+/) do
     resources :users, path: '', only: [:show] do
       member do
