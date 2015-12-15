@@ -3,6 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
+  extend FriendlyId
+  friendly_id :screen_name
+
   # Virtual attribute for authenticating by either :screen_name or :email
   # This is in addition to a real persisted field like 'screen_name'
   attr_accessor :login

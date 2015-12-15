@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   skip_before_action :authenticate_user!
 
   before_action only: [:show, :following, :followers] do
-    @user = User.includes(:statuses).find_by!(screen_name: params[:id])
+    @user = User.includes(:statuses).friendly.find(params[:id])
   end
 
   def following

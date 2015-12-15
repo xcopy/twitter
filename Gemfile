@@ -46,6 +46,8 @@ gem 'bootstrap-sass', '~> 3.3.6'
 
 gem 'font-awesome-sass', '~> 4.4.0'
 
+gem 'friendly_id', '~> 5.1.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
