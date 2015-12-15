@@ -1,0 +1,11 @@
+.row
+  .col-md-6.col-md-offset-3
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-md-6
+            strong = link_to @user.full_name, user_path(@user.screen_name) + "\n"
+            div.text-muted = "@#{@user.screen_name}"
+          .col-md-6
+            |
+        article style="font-size: 18px; margin-top: 10px;" = @status.text

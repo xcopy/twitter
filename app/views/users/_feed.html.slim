@@ -10,7 +10,8 @@
                 span.text-muted = "@#{status.user_screen_name}"
               .col-md-6
                 .text-right
-                  time.text-muted datetime="#{status.created_at.iso8601}" data-livestamp="#{status.created_at.iso8601}"
+                  = link_to user_status_path(status.user.screen_name, status) do
+                    = tag :time, class: 'text-muted', datetime: status.created_at.iso8601, data: {livestamp: status.created_at.iso8601}
             .text = status.text
             .actions.text-muted
               .row
