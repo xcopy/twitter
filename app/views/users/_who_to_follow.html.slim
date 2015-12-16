@@ -11,9 +11,12 @@
         li ng-repeat="user in ctrl.users" style="margin-bottom: 15px;"
           / todo: ng-href
           div style="margin-bottom: 2px;"
-            a>ng-href="/{{user['screen_name']}}" ng-bind="user['full_name']"
-            span.text-muted ng-bind="'@'+user['screen_name']"
+            a>ng-href="/{{user.screen_name}}" ng-bind="user.full_name"
+            span.text-muted ng-bind="'@'+user.screen_name"
           / todo: follow action
-          button.btn.btn-default.btn-sm type="button"
+          button.btn.btn-default.btn-sm type="button" ng-hide="user.following" ng-click="ctrl.follow(user)"
             = icon('user-plus') + "\n"
             | Follow
+          button.btn.btn-default.btn-sm type="button" ng-show="user.following" ng-click="ctrl.unfollow(user)"
+            = icon('user-times') + "\n"
+            | Unfollow

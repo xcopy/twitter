@@ -21,4 +21,28 @@ class UsersController < ApplicationController
       format.json {render json: @who_to_follow.take(5)}
     end
   end
+
+  def follow
+    user = User.find(params[:id])
+
+    if current_user.following?(user)
+      render status: :bad_request
+    end
+
+    current_user.follow(user)
+
+    render json: user
+  end
+
+  def unfollow
+    user = User.find(params[:id])
+
+    unless current_user.following?(user)
+      render status: :bad_request
+    end
+
+    current_user.unfollow(user)
+
+    render json: user
+  end
 end

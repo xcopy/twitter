@@ -19,6 +19,12 @@ Rails.application.routes.draw do
 
   get :who_to_follow, to: 'users#who_to_follow'
 
+  resource :users, only: [] do
+    member do
+      post :follow, :unfollow, constraints: {format: :json}
+    end
+  end
+
   constraints(id: /[a-zA-Z0-9_.]+/) do
     resources :users, path: '', only: [:show] do
       member do
