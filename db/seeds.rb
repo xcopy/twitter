@@ -9,6 +9,7 @@ end
 users = [{
   full_name: 'Kairat Jenishev',
   screen_name: 'xcopy',
+    description: Faker::Lorem.paragraph,
   email: 'xcopy@gmail.com',
   password: 'password',
   password_confirmation: 'password'
@@ -21,6 +22,7 @@ users = [{
     full_name: Faker::Name.name,
     screen_name: screen_name,
     email: Faker::Internet.free_email(screen_name),
+    description: Faker::Lorem.paragraph(2, true),
     password: 'password',
     password_confirmation: 'password'
   }
@@ -35,7 +37,7 @@ User.all.each do |user|
   rand(11..20).times do
     ts = Time.zone.now - [rand(1..3).days, rand(1..23).hours, rand(1..59).minutes].sample
     user.statuses.create({
-      text: Faker::Lorem.paragraph(4, true),
+      text: Faker::Lorem.paragraph(2, true, 2),
       created_at: ts,
       updated_at: ts
     })

@@ -52,7 +52,7 @@ body {
 }
 
 .card {
-  .recent_status {
+  .description {
     height: 140px;
     overflow: hidden;
   }
@@ -67,6 +67,12 @@ body {
       margin-bottom: 15px;
       &:last-child {
         margin-bottom: 0;
+      }
+
+      .profile {
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        overflow: hidden;
       }
     }
   }

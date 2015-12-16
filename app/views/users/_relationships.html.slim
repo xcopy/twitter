@@ -11,4 +11,4 @@
                 = link_to user.full_name, user_path(user)
                 .text-muted = "@#{user.screen_name}"
               .panel-body
-                .recent_status = truncate(user.recent_status.text, length: 200) unless user.recent_status.nil?
+                .description = truncate(user.description, length: 200) unless user.description.nil?
