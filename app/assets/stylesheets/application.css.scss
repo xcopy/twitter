@@ -78,22 +78,10 @@ a {
   }
 }
 
-.who-to-follow {
-  ul {
-    @include list-unstyled;
-    margin-bottom: 0;
-
-    li {
-      margin-bottom: 15px;
-
-      &:last-child {
-        margin-bottom: 0;
-      }
-
-      .profile {
-        @extend .cut;
-      }
-    }
+.tweet {
+  article {
+    font-size: 18px;
+    margin-top: 10px;
   }
 }
 
@@ -119,6 +107,25 @@ a {
   &.user {
     .nav {
       @extend %stats;
+    }
+
+    .who-to-follow {
+      ul {
+        @include list-unstyled;
+        margin-bottom: 0;
+
+        li {
+          margin-bottom: 15px;
+
+          &:last-child {
+            margin-bottom: 0;
+          }
+
+          .profile {
+            @extend .cut;
+          }
+        }
+      }
     }
 
     .card {

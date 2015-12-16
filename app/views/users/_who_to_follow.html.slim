@@ -14,17 +14,4 @@
       p Sign up now to get your own personalized timeline!
       = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-block'
 
-.panel.panel-default
-  .panel-body
-    h3 Trends
-    ul.list-unstyled
-      li #1DCarpoolKaraoke
-      li #PMQs
-      li #MyParentsForgotToMention
-      li Nanny Pat
-      li #DilwaleBlastIn2Days
-      li #PWLinGurgaon
-      li Lets Transform HPE
-      li Pep Guardiola
-      li Juande Ramos
-      li Dubfire
+= render 'shared/trends'
