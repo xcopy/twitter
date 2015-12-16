@@ -1,7 +1,7 @@
 - statuses.each do |status|
   .panel.panel-default
     .panel-body
-      .status
+      .status.js-status
         .row
           .col-md-6 = username_link(status.user)
           .col-md-6
@@ -9,14 +9,4 @@
               = link_to user_status_path(status.user, status) do
                 = tag :time, class: 'text-muted', datetime: status.created_at.iso8601, data: {livestamp: status.created_at.iso8601}
         .text = status.text
-        .actions
-          .text-muted
-            .row
-              .col-md-2
-                = icon(:reply)
-              .col-md-2
-                = icon(:retweet)
-              .col-md-2
-                = icon(:heart)
-              .col-md-6
-                = icon('ellipsis-h')
+        = render 'statuses/details', status: status

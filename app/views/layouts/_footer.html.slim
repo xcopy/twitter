@@ -5,5 +5,23 @@
     (function ($) {
       $(function () {
         $.get(Routes.who_to_follow_path({format: 'js'}));
+
+        $(document).on('click', '.js-status', function (event) {
+          // event.stopPropagation();
+          if (!$(event.target).closest('a').length) {
+            $(this).children('.details').slideToggle(300);
+          }
+        }).on('click', function (event) {
+          var $details;
+
+          // execute only when feed exists
+          if ($('.feed').length) {
+            $details = $('.status .details:visible');
+
+            if (!$(event.target).closest('.js-status').length && $details.length) {
+              $details.slideToggle(300);
+            }
+          }
+        });
       });
     })(jQuery);

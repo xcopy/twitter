@@ -1,0 +1,28 @@
+.details
+  .stats
+    / todo
+    .row
+      .col-md-2
+        = link_to '#' do
+          .text-muted Retweets
+          h4 10
+      .col-md-2
+        = link_to '#' do
+          .text-muted Likes
+          h4 20
+      .col-md-8
+  .datetime.text-muted
+    = content_tag :time, status.created_at.strftime('%l:%M %p - %e %b %Y'), datetime: status.created_at.iso8601
+
+/ todo
+.actions
+  .text-muted
+    .row
+      .col-md-2
+        = icon(:reply)
+      .col-md-2
+        = icon(:retweet)
+      .col-md-2
+        = icon(:heart)
+      .col-md-6
+        = icon('ellipsis-h')
