@@ -6,6 +6,13 @@ class ApplicationController < ActionController::Base
   before_action :authenticate_user!, unless: :devise_controller?
   before_action :configure_permitted_parameters, if: :devise_controller?
 
+  helper_method :current_user
+
+  # @return User
+  def current_user
+    super
+  end
+
   protected
 
   def configure_permitted_parameters

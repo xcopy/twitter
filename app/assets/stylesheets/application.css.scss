@@ -24,8 +24,20 @@ body {
   padding-top: 70px;
 }
 
+.cut {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
 .panel {
   @include box-shadow(none)
+}
+
+a {
+  &.username {
+    text-decoration: none;
+  }
 }
 
 .stream {
@@ -79,9 +91,7 @@ body {
       }
 
       .profile {
-        white-space: nowrap;
-        text-overflow: ellipsis;
-        overflow: hidden;
+        @extend .cut;
       }
     }
   }

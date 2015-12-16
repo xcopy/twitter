@@ -5,9 +5,7 @@
         .panel-body
           .status
             .row
-              .col-md-6
-                = link_to(status.user_full_name, user_path(status.user)) + "\n"
-                span.text-muted = "@#{status.user_screen_name}"
+              .col-md-6 = username_link(status.user)
               .col-md-6
                 .text-right
                   = link_to user_status_path(status.user, status) do
