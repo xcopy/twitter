@@ -1,1 +1,16 @@
-/ todo
+.row
+  .col-md-6.col-md-offset-3
+    .stream
+      .panel.panel-default
+        .panel-heading
+          strong Who to follow
+      - @who_to_follow.each do |user|
+        .panel.panel-default
+          .panel-body
+            .row
+              .col-md-9
+                =' link_to user.full_name, user_path(user)
+                span.text-muted = "@#{user.screen_name}"
+                div = user.description
+              .col-md-3
+                .text-right = render 'users/button_follow', user: user

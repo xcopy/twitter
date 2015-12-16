@@ -28,8 +28,12 @@ body {
   @include box-shadow(none)
 }
 
-#feed {
+.stream {
   .panel {
+    .panel-heading {
+      border-bottom: 0;
+    }
+
     &:not(:last-child) {
       margin-bottom: 0;
       border-bottom: 0;
@@ -39,22 +43,26 @@ body {
     &:not(:first-child) {
       @include border-top-radius(0)
     }
+  }
+}
 
-    .status {
-      .text {
-        margin-top: 10px;
-      }
-      .actions {
-        margin-top: 15px;
-      }
+#feed {
+  .status {
+    .text {
+      margin-top: 10px;
+    }
+
+    .actions {
+      margin-top: 15px;
     }
   }
 }
 
 .card {
   .description {
-    height: 140px;
+    height: 115px;
     overflow: hidden;
+    margin-bottom: 15px;
   }
 }
 
@@ -65,6 +73,7 @@ body {
 
     li {
       margin-bottom: 15px;
+
       &:last-child {
         margin-bottom: 0;
       }
