@@ -1,0 +1,37 @@
+doctype html
+html
+  = render 'layouts/head'
+  body
+    = render 'layouts/header'
+
+    .layout.user
+      .container
+        .row
+          .col-md-3
+            .panel.panel-default
+              .panel-heading
+                strong = username_link(@user, true)
+              .panel-body = @user.description
+            = yield :sidebar
+          .col-md-9
+            .panel.panel-default
+              .panel-body
+                .nav
+                  .row
+                    .col-md-3
+                      = link_to user_path(@user)
+                        .text-muted Tweets
+                        h4 = @user.statuses_count
+                    .col-md-3
+                      = link_to following_user_path(@user)
+                        .text-muted Following
+                        h4 = @user.following_count
+                    .col-md-3
+                      = link_to followers_user_path(@user)
+                        .text-muted Followers
+                        h4 = @user.followers_count
+                    .col-md-3
+                      .text-right = follow_link(@user)
+            .yield = yield
+
+    = render 'layouts/footer'

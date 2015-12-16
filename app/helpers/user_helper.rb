@@ -9,7 +9,12 @@ module UserHelper
     if current_user.eql?(user)
       link_to 'Edit profile', '#', class: 'btn btn-default btn-sm'
     else
-      partial = current_user.following?(user) ? 'button_unfollow' : 'button_follow'
+      partial = if user_signed_in?
+        current_user.following?(user) ? 'button_unfollow' : 'button_follow'
+      else
+        'button_follow'
+      end
+
       render("users/#{partial}", user: user)
     end
   end

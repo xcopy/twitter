@@ -1,14 +1,13 @@
+- content_for :sidebar do
+  = render 'users/who_to_follow'
+
 .row
-  .col-md-3
-    = render 'users/sidebar', user: @user
-  .col-md-9
-    .row
-      - users.each do |user|
-        .col-md-4
+  - users.each do |user|
+    .col-md-4
+      .panel.panel-default
+        .panel-heading = username_link(user, true)
+        .panel-body
           .card
-            .panel.panel-default
-              .panel-heading = username_link(user, true)
-              .panel-body
-                .description
-                  = truncate(user.description, length: 200) unless user.description.nil?
-                .text-right = follow_link(user)
+            .description
+              = truncate(user.description, length: 200) unless user.description.nil?
+            .text-right = follow_link(user)

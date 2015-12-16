@@ -31,7 +31,15 @@ body {
 }
 
 .panel {
-  @include box-shadow(none)
+  @include box-shadow(none);
+
+  h3, .h3 {
+    margin-top: 0;
+  }
+
+  .list-unstyled {
+    margin-bottom: 0;
+  }
 }
 
 a {
@@ -70,14 +78,6 @@ a {
   }
 }
 
-.card {
-  .description {
-    height: 115px;
-    overflow: hidden;
-    margin-bottom: 15px;
-  }
-}
-
 .who-to-follow {
   ul {
     @include list-unstyled;
@@ -92,6 +92,40 @@ a {
 
       .profile {
         @extend .cut;
+      }
+    }
+  }
+}
+
+.layout {
+  %stats {
+    a {
+      text-decoration: none;
+
+      h4, .h4 {
+        margin: 0;
+      }
+    }
+  }
+
+  &.application {
+    .profile-card {
+      .stats {
+        @extend %stats;
+      }
+    }
+  }
+
+  &.user {
+    .nav {
+      @extend %stats;
+    }
+
+    .card {
+      .description {
+        height: 115px;
+        overflow: hidden;
+        margin-bottom: 15px;
       }
     }
   }

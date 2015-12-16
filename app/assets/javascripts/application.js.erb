@@ -10,8 +10,6 @@
     $.extend(window, Routes);
 
     $(function () {
-        $.get(Routes.who_to_follow_path({format: 'js'}));
-
         $(document).on('mouseenter', '.js-unfollow', function () {
             $(this).children('span').text('Unfollow').end()
                 .children('i.fa').removeClass('fa-check').addClass('fa-user-times').end()

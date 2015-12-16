@@ -1,27 +1,6 @@
 .row
-  .col-md-3
-    .panel.panel-default
-      .panel-heading
-        strong = username_link(@user, true)
-      .panel-body = @user.description
-  .col-md-6
-    div style="margin: 15px;"
-      .row
-        .col-md-3
-          | Tweets
-          br
-          = link_to @user.statuses_count, user_path(@user)
-        .col-md-3
-          | Following
-          br
-          = link_to @user.following_count, following_user_path(@user)
-        .col-md-3
-          | Followers
-          br
-          = link_to @user.followers_count, followers_user_path(@user)
-        .col-md-3
-          .text-right = follow_link(@user)
+  .col-md-8
     .feed.stream
       = render 'users/feed', statuses: @user.statuses
-  .col-md-3
+  .col-md-4
     = render 'users/who_to_follow'

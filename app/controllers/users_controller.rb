@@ -1,6 +1,8 @@
 class UsersController < ApplicationController
   helper UserHelper
 
+  layout 'user', only: [:show, :following, :followers]
+
   skip_before_action :authenticate_user!, only: [:show]
 
   before_action only: [:show, :following, :followers] do

@@ -1,6 +1,24 @@
 .row
   .col-md-3
-    = render 'users/sidebar', user: current_user
+    .profile-card
+      .panel.panel-default
+        .panel-heading
+          strong = username_link(current_user, true)
+        .panel-body
+          .stats
+            .row
+              .col-md-4
+                = link_to user_path(current_user) do
+                  .text-muted Tweets
+                  h4 = current_user.statuses_count
+              .col-md-4
+                = link_to following_user_path(current_user) do
+                  .text-muted Following
+                  h4 = current_user.following_count
+              .col-md-4
+                = link_to followers_user_path(current_user) do
+                  .text-muted Followers
+                  h4 = current_user.followers_count
   .col-md-6
     .feed.stream
       .panel.panel-default

@@ -1,0 +1,9 @@
+= javascript_include_tag 'application'
+
+- if user_signed_in?
+  javascript:
+    (function ($) {
+      $(function () {
+        $.get(Routes.who_to_follow_path({format: 'js'}));
+      });
+    })(jQuery);
