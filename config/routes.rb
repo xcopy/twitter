@@ -21,7 +21,7 @@ Rails.application.routes.draw do
 
   resource :users, only: [] do
     member do
-      post :follow, :unfollow, constraints: {format: :json}
+      post :follow, :unfollow
     end
   end
 

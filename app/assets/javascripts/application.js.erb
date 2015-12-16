@@ -1,0 +1,15 @@
+//= require jquery
+//= require jquery_ujs
+//  require bootstrap-sprockets
+//= require momentjs/moment
+//= require livestampjs/livestamp
+//= require js-routes
+//= require_tree .
+
+(function ($) {
+    $.extend(window, Routes);
+
+    $(function () {
+        $.get(Routes.who_to_follow_path({format: 'js'}));
+    });
+})(jQuery);

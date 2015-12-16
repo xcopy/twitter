@@ -5,6 +5,10 @@ class UsersController < ApplicationController
     @user = User.includes(:statuses).friendly.find(params[:id])
   end
 
+  before_action only: [:follow, :unfollow] do
+    @other_user = User.find(params[:id])
+  end
+
   def following
     @following = @user.following
   end
@@ -15,34 +19,21 @@ class UsersController < ApplicationController
 
   def who_to_follow
     @who_to_follow = current_user.who_to_follow
-
-    respond_to do |format|
-      format.html
-      format.json {render json: @who_to_follow.take(5)}
-    end
   end
 
   def follow
-    user = User.find(params[:id])
-
-    if current_user.following?(user)
+    if current_user.following?(@other_user)
       render status: :bad_request
     end
 
-    current_user.follow(user)
-
-    render json: user
+    current_user.follow(@other_user)
   end
 
   def unfollow
-    user = User.find(params[:id])
-
-    unless current_user.following?(user)
+    unless current_user.following?(@other_user)
       render status: :bad_request
     end
 
-    current_user.unfollow(user)
-
-    render json: user
+    current_user.unfollow(@other_user)
   end
 end

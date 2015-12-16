@@ -1,0 +1,3 @@
+(function ($) {
+    $('.who-to-follow').append('<%= escape_javascript render('users/who_to_follow_list', users: @who_to_follow.take(5)) %>');
+})(jQuery);

@@ -57,3 +57,17 @@ body {
     overflow: hidden;
   }
 }
+
+.who-to-follow {
+  ul {
+    @include list-unstyled;
+    margin-bottom: 0;
+
+    li {
+      margin-bottom: 15px;
+      &:last-child {
+        margin-bottom: 0;
+      }
+    }
+  }
+}

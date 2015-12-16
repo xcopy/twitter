@@ -1,0 +1,3 @@
+(function ($) {
+    $('.js-unfollow-<%= @other_user.id %>', '.who-to-follow').replaceWith('<%= escape_javascript render('users/button_follow', user: @other_user) %>');
+})(jQuery);
