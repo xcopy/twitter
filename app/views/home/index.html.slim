@@ -2,6 +2,11 @@
   .col-md-3
     = render 'users/sidebar', user: current_user
   .col-md-6
-    = render 'users/feed', statuses: current_user.feed
+    .feed.stream
+      .panel.panel-default
+        .panel-heading
+          / todo
+          input.form-control type="text" placeholder="What's happening?"
+      = render 'users/feed', statuses: current_user.feed
   .col-md-3
     = render 'users/who_to_follow'
