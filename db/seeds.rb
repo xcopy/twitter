@@ -24,12 +24,13 @@ users = [{
     email: Faker::Internet.free_email(screen_name),
     description: Faker::Lorem.paragraph(2, true),
     password: 'password',
-    password_confirmation: 'password'
+    password_confirmation: 'password',
+    avatar: URI.parse("http://abs.twimg.com/sticky/default_profile_images/default_profile_#{rand(0..6)}.png")
   }
 end
 
 users.each do |user|
-  User.new(user).save(validate: false)
+  User.new(user).save!(validate: false)
 end
 
 # add some fake statuses

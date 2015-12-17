@@ -9,6 +9,7 @@
 
 .zeus.sock
 public/rails_best_practices.html
+public/uploads/
 
 # Ignore bundler config.
 /.bundle
