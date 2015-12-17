@@ -3,10 +3,11 @@
     .panel-body
       .status.js-status
         .row
-          .col-md-6 = username_link(status.user)
+          .col-md-6
+            .u-block = username_link(status.user)
           .col-md-6
             .text-right
-              = link_to user_status_path(status.user, status) do
-                = tag :time, class: 'text-muted', datetime: status.created_at.iso8601, data: {livestamp: status.created_at.iso8601}
+              = link_to user_status_path(status.user, status), class: :ts do
+                = time_tag status.created_at, data: {livestamp: status.created_at.iso8601}
         .text = status.text
         = render 'statuses/details', status: status

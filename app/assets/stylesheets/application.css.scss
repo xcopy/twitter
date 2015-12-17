@@ -44,7 +44,29 @@ body {
 
 a {
   &.username {
+    @extend .cut;
+    display: block;
     text-decoration: none;
+
+    .avatar {
+      float: left;
+      margin-top: 4px;
+      margin-right: 5px;
+      border-radius: 5px;
+      height: 34px;
+      width: 34px;
+    }
+
+    .screen-name {
+      @extend .text-muted;
+    }
+
+    .u-block & {
+      .screen-name {
+        @extend .cut;
+        display: block;
+      }
+    }
   }
 }
 
@@ -89,6 +111,16 @@ a {
     margin-top: 10px;
   }
 
+  a {
+    &.ts {
+      text-decoration: none;
+    }
+  }
+
+  time {
+    @extend .text-muted;
+  }
+
   .text {
     &.big {
       font-size: 28px;
@@ -125,6 +157,7 @@ a {
     margin-bottom: 0;
 
     li {
+      position: relative;
       margin-bottom: 15px;
 
       &:last-child {
@@ -132,20 +165,27 @@ a {
       }
 
       .profile {
-        @extend .cut;
+        margin-bottom: 2px;
+
+        small {
+          @extend .cut;
+          display: block;
+          margin-top: -17px;
+          margin-left: 40px;
+        }
+      }
+
+      .follow-button {
+        margin-left: 40px;
       }
     }
   }
 }
 
-.layout {
-  &.user {
-    .card {
-      .description {
-        height: 115px;
-        overflow: hidden;
-        margin-bottom: 15px;
-      }
-    }
+.card {
+  .description {
+    height: 115px;
+    overflow: hidden;
+    margin-bottom: 15px;
   }
 }

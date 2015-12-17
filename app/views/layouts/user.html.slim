@@ -8,10 +8,11 @@ html
       .container
         .row
           .col-md-3
-            .panel.panel-default
-              .panel-heading
-                strong = username_link(@user, true)
-              .panel-body = @user.description
+            .profile-card
+              .panel.panel-default
+                .panel-heading
+                  .u-block = username_link(@user)
+                .panel-body = @user.description
             = yield :sidebar
           .col-md-9
             .panel.panel-default
