@@ -1,8 +1,14 @@
 module UserHelper
-  def username_link(user = nil, screen_name_new_line = false)
-    link_to user_path(user), class: :username, title: "#{user.full_name} (#{user.screen_name})" do
-      content_tag(:span, user.full_name) + ' ' + content_tag(screen_name_new_line ? :div : :span, "@#{user.screen_name}", class: 'text-muted')
-    end
+  def username_link(user = nil)
+    title = "#{user.full_name} (#{user.screen_name})"
+
+    content = [
+      image_tag(user.avatar.url(:normal), class: :avatar, alt: title),
+      content_tag(:strong, user.full_name, class: 'full-name'),
+      content_tag(:span, "@#{user.screen_name}", class: 'screen-name')
+    ].join("\n").html_safe
+
+    link_to content, user_path(user), class: :username, title: title
   end
 
   def follow_link(user)

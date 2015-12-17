@@ -11,8 +11,7 @@
           .text-muted Likes
           h4 20
       .col-md-8
-  .datetime.text-muted
-    = content_tag :time, status.created_at.strftime('%l:%M %p - %e %b %Y'), datetime: status.created_at.iso8601
+  .datetime = time_tag status.created_at, status.created_at.strftime('%l:%M %p - %e %b %Y')
 
 / todo
 .actions

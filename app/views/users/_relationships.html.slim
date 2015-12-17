@@ -5,7 +5,8 @@
   - users.each do |user|
     .col-md-4
       .panel.panel-default
-        .panel-heading = username_link(user, true)
+        .panel-heading
+          .u-block = username_link(user)
         .panel-body
           .card
             .description

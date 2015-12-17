@@ -6,6 +6,19 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :screen_name
 
+  has_attached_file :avatar,
+    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
+    path: ":rails_root/public/uploads/#{Rails.env}/:class/:id/:style.:extension",
+    url: "/uploads/#{Rails.env}/:class/:id/:style.:extension",
+    styles: {
+      normal: '48x48>',
+      bigger: '73x73>',
+      mini: '24x24>'
+    }
+
+  # todo: other validates_*
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+
   # Virtual attribute for authenticating by either :screen_name or :email
   # This is in addition to a real persisted field like 'screen_name'
   attr_accessor :login
