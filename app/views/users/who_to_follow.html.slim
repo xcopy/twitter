@@ -1,6 +1,6 @@
 .row
   .col-md-6.col-md-offset-3
-    .stream
+    .stream.who-to-follow
       .panel.panel-default
         .panel-heading
           strong Who to follow
@@ -9,7 +9,9 @@
           .panel-body
             .row
               .col-md-9
-                = username_link(user)
-                div = user.description
+                .profile
+                  = username_link(user)
+                  = render 'users/followed_by', user: user
               .col-md-3
                 .text-right = follow_link(user)
+            .description = user.description

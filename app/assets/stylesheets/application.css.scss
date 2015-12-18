@@ -152,32 +152,36 @@ a {
 }
 
 .who-to-follow {
-  ul {
-    @include list-unstyled;
-    margin-bottom: 0;
+  .sidebar & {
+    ul {
+      @include list-unstyled;
+      margin-bottom: 0;
 
-    li {
-      position: relative;
-      margin-bottom: 15px;
+      li {
+        position: relative;
+        margin-bottom: 15px;
 
-      &:last-child {
-        margin-bottom: 0;
-      }
+        &:last-child {
+          margin-bottom: 0;
+        }
 
-      .profile {
-        margin-bottom: 2px;
-
-        small {
-          @extend .cut;
-          display: block;
-          margin-top: -17px;
+        .follow-button {
           margin-left: 40px;
         }
       }
+    }
 
-      .follow-button {
-        margin-left: 40px;
-      }
+    .profile {
+      margin-bottom: 2px;
+    }
+  }
+
+  .profile {
+    small {
+      @extend .cut;
+      display: block;
+      margin-top: -17px;
+      margin-left: 40px;
     }
   }
 }

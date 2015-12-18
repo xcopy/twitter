@@ -1,9 +1,7 @@
-- if users.any?
-  ul
-    - users.each do |user|
-      li
-        .profile
-          = username_link(user)
-          / todo
-          small.text-muted Followed by...
-        .follow-button = follow_link(user)
+ul
+  - users.each do |user|
+    li
+      .profile
+        = username_link(user)
+        = render 'users/followed_by', user: user
+      .follow-button = follow_link(user)

@@ -1,17 +1,18 @@
-.panel.panel-default
-  - if user_signed_in?
-    .panel-heading
-      .row
-        .col-md-6
-          strong Who to follow
-        .col-md-6
-          .text-right = link_to 'View all', who_to_follow_path
-    .panel-body
-      .who-to-follow
-  - else
-    .panel-body
-      h3 New to Twitter?
-      p Sign up now to get your own personalized timeline!
-      = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-block'
+.sidebar
+  .panel.panel-default
+    - if user_signed_in?
+      .panel-heading
+        .row
+          .col-md-6
+            strong Who to follow
+          .col-md-6
+            .text-right = link_to 'View all', who_to_follow_path
+      .panel-body
+        .who-to-follow
+    - else
+      .panel-body
+        h3 New to Twitter?
+        p Sign up now to get your own personalized timeline!
+        = link_to 'Sign up', new_user_registration_path, class: 'btn btn-primary btn-block'
 
-= render 'shared/trends'
+  = render 'shared/trends'

@@ -1,0 +1,1 @@
+small.text-muted Followed by #{((current_user.following & user.followers).map {|u| link_to u.full_name, user_path(u)}).join(', ').html_safe}
