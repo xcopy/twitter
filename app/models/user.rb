@@ -6,10 +6,12 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :screen_name
 
+  AVATAR_URL = "/uploads/#{Rails.env}/:class/:id/:attachment/:style.:extension"
+
   has_attached_file :avatar,
     default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
-    path: ":rails_root/public/uploads/#{Rails.env}/:class/:id/:style.:extension",
-    url: "/uploads/#{Rails.env}/:class/:id/:style.:extension",
+    path: ":rails_root/public#{AVATAR_URL}",
+    url: AVATAR_URL,
     styles: {
       normal: '48x48>',
       bigger: '73x73>',
@@ -65,10 +67,18 @@ class User < ActiveRecord::Base
   end
 
   def who_to_follow
-    ids = following.pluck(:id)
-    ids << id
+    following_ids = following.pluck(:id)
 
-    User.where.not(id: ids)
+    if following_ids.count == 0
+      User.where.not(id: id)
+    else
+      following_ids << id
+      users_to_follow_ids = following.map {|u| u.following.pluck(:id)}.flatten.uniq
+
+      User.includes(:followers)
+        .where(id: users_to_follow_ids)
+        .where.not(id: following_ids)
+    end
   end
 
   def feed
