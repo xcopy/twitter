@@ -6,27 +6,30 @@ ActiveRecord::Base.connection.tables.each do |table|
 end
 
 # register some fake users
-users = [{
-  full_name: 'Kairat Jenishev',
-  screen_name: 'xcopy',
-    description: Faker::Lorem.paragraph,
-  email: 'xcopy@gmail.com',
+user_params = {
+  description: Faker::Lorem.paragraph(2, true),
   password: 'password',
   password_confirmation: 'password'
-}]
+}
+
+users = [
+  user_params.merge({
+    full_name: 'Kairat Jenishev',
+    screen_name: 'xcopy',
+    email: 'xcopy@gmail.com',
+    avatar: URI.parse('http://abs.twimg.com/sticky/default_profile_images/default_profile_0.png')
+  })
+]
 
 20.times do
   screen_name = Faker::Internet.user_name
 
-  users << {
+  users << user_params.merge({
     full_name: Faker::Name.name,
     screen_name: screen_name,
     email: Faker::Internet.free_email(screen_name),
-    description: Faker::Lorem.paragraph(2, true),
-    password: 'password',
-    password_confirmation: 'password',
     avatar: URI.parse("http://abs.twimg.com/sticky/default_profile_images/default_profile_#{rand(0..6)}.png")
-  }
+  })
 end
 
 users.each do |user|
