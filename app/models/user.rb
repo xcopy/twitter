@@ -89,4 +89,8 @@ class User < ActiveRecord::Base
 
     # statuses + Status.includes(:user).where(user: following)
   end
+
+  def title
+    "#{full_name} (#{screen_name})"
+  end
 end
