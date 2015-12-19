@@ -4,5 +4,16 @@ header.navbar.navbar-default.navbar-fixed-top
       ul.nav.navbar-nav
         li = link_to "#{icon(user_signed_in? ? :home : :twitter)} Home".html_safe, authenticated_root_path
       - if user_signed_in?
-        ul.nav.navbar-nav.navbar-right
-          li = link_to 'Logout', destroy_user_session_path, method: :delete
+        .navbar-text.navbar-right style="margin-right: 0;"
+          .dropdown
+            a href="#" data-toggle="dropdown" = image_tag current_user.avatar.url(:mini), class: 'avatar mini', alt: current_user.title
+            ul.dropdown-menu
+              li
+                = link_to user_path(current_user) do
+                  strong = current_user.full_name
+                  br
+                  small.text-muted View profile
+              li.divider
+              / todo
+              li = link_to 'Settings', '#'
+              li = link_to 'Log out', destroy_user_session_path, method: :delete

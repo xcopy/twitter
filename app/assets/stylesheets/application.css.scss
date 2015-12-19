@@ -52,7 +52,6 @@ a {
       float: left;
       margin-top: 4px;
       margin-right: 5px;
-      border-radius: 5px;
       height: 34px;
       width: 34px;
     }
@@ -67,6 +66,14 @@ a {
         display: block;
       }
     }
+  }
+}
+
+.avatar {
+  border-radius: 5px;
+
+  &.mini {
+    border-radius: 4px;
   }
 }
 
