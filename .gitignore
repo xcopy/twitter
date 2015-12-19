@@ -10,6 +10,7 @@
 .zeus.sock
 public/rails_best_practices.html
 public/uploads/
+app/assets/javascripts/routes.js
 
 # Ignore bundler config.
 /.bundle

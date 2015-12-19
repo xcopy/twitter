@@ -2,3 +2,7 @@ head
   title Twitter
   = stylesheet_link_tag 'application', media: :all
   = csrf_meta_tags
+  javascript:
+    window.App = {
+      user_signed_in: #{user_signed_in?}
+    };
