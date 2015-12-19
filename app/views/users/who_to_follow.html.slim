@@ -10,7 +10,7 @@
             .row
               .col-md-9
                 .profile
-                  = username_link(user)
+                  = username_link(user, :thumb)
                   = render 'users/followed_by', user: user
               .col-md-3
                 .text-right = follow_link(user)

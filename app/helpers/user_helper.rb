@@ -1,7 +1,7 @@
 module UserHelper
-  def username_link(user = nil)
+  def username_link(user = nil, avatar_style = :normal)
     content = [
-      image_tag(user.avatar.url(:normal), class: :avatar, alt: user.title),
+      image_tag(user.avatar.url(avatar_style.to_sym), class: "avatar #{avatar_style.to_s}", alt: user.title),
       content_tag(:strong, user.full_name, class: 'full-name'),
       content_tag(:span, "@#{user.screen_name}", class: 'screen-name')
     ].join("\n").html_safe

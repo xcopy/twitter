@@ -13,8 +13,9 @@ class User < ActiveRecord::Base
     path: ":rails_root/public#{AVATAR_URL}",
     url: AVATAR_URL,
     styles: {
-      normal: '48x48#',
       bigger: '73x73#',
+      normal: '48x48#',
+      thumb: '34x34#',
       mini: '24x24#'
     }
 

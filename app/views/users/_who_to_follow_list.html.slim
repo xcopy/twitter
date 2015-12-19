@@ -2,6 +2,6 @@ ul
   - users.each do |user|
     li
       .profile
-        = username_link(user)
+        = username_link(user, :thumb)
         = render 'users/followed_by', user: user
       .follow-button = follow_link(user)
