@@ -1,11 +1,18 @@
 //= require jquery
 //= require jquery_ujs
+
 //= require momentjs/moment
 //= require livestampjs/livestamp
+
 //= require js-routes
+
 //= require bootstrap/dropdown
 //= require bootstrap/modal
-//= require_tree .
+
+//= require_self
+//= require home
+//= require users
+//= require statuses
 
 (function ($) {
     $.extend(window, Routes);
@@ -14,37 +21,5 @@
         if (xhr.status == 401) {
             $('#signup').modal('show');
         }
-    });
-
-    $(function () {
-        if (App.user_signed_in) {
-            $.get(Routes.who_to_follow_path({format: 'js'}));
-        }
-
-        $(document).on('mouseenter', '.js-unfollow', function () {
-            $(this).children('span').text('Unfollow').end()
-                .children('i.fa').removeClass('fa-check').addClass('fa-user-times').end()
-                .removeClass('btn-info').addClass('btn-danger').end();
-        }).on('mouseleave', '.js-unfollow', function () {
-            $(this).children('span').text('Following').end()
-                .children('i.fa').removeClass('fa-user-times').addClass('fa-check').end()
-                .removeClass('btn-danger').addClass('btn-info').end();
-        }).on('click', '.js-status', function (event) {
-            // event.stopPropagation();
-            if (!$(event.target).closest('a').length) {
-                $(this).children('.details').slideToggle(300);
-            }
-        }).on('click', function (event) {
-            var $details;
-
-            // execute only when feed exists
-            if ($('.feed').length) {
-                $details = $('.status .details:visible');
-
-                if (!$(event.target).closest('.js-status').length && $details.length) {
-                    $details.slideToggle(300);
-                }
-            }
-        });
     });
 })(jQuery);
