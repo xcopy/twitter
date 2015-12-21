@@ -1,9 +1,3 @@
 (function ($) {
-    var $status_form = $('form#new_status');
-
-    $('#new_status_editable', $status_form).text('What\'s happening?').removeClass('expand');
-    $('.toolbar', $status_form).hide();
-    $(':submit', $status_form).prop('disabled', true);
-
     $('.feed .panel:first-child').after('<%= j render('statuses/status', status: @status) %>');
 })(jQuery);

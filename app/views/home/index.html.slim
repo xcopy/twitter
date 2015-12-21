@@ -23,12 +23,12 @@
     .feed.stream
       .panel.panel-default
         .panel-heading
-          .home-tweet-box
+          .home.status-form
             .user = image_tag current_user.avatar.url(:thumb), class: 'avatar thumb', alt: current_user.title
             .form
-              = form_for @status, url: user_statuses_path(current_user, :js), remote: true, html: {novalidate: true} do |f|
-                = f.text_area :text, class: :hide, required: true
-                #new_status_editable.form-control contenteditable="true" What's happening?
+              = form_for @status, url: user_statuses_path(current_user, :js), remote: true, html: {novalidate: true, class: 'js-status-form'} do |f|
+                = f.text_area :content, class: 'hide js-status-content', required: true
+                .editable.form-control contenteditable="true" What's happening?
                 .toolbar
                   .row
                     .col-md-9

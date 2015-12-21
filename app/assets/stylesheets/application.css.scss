@@ -118,7 +118,7 @@ a {
 }
 
 .status {
-  .text,
+  .content,
   .stats,
   .datetime {
     margin-top: 10px;
@@ -134,7 +134,7 @@ a {
     @extend .text-muted;
   }
 
-  .text {
+  .content {
     &.big {
       font-size: 28px;
       line-height: 34px;
@@ -207,36 +207,42 @@ a {
   }
 }
 
-.home-tweet-box {
-  @extend .clearfix;
-  position: relative;
+.status-form {
+  &.home {
+    @extend .clearfix;
+    position: relative;
 
-  .user {
-    position: absolute;
-    width: 48px;
-    text-align: right;
-    top: 0;
-    left: 0;
-  }
-
-  .form {
-    margin-left: 53px;
-
-    #new_status_editable {
-      height: auto;
-
-      &.expand {
-        min-height: 80px;
-      }
+    .user {
+      position: absolute;
+      width: 48px;
+      text-align: right;
+      top: 0;
+      left: 0;
     }
 
-    .toolbar {
-      display: none;
-      margin-top: 10px;
+    .form {
+      margin-left: 53px;
+    }
+  }
 
-      a {
-        text-decoration: none;
-      }
+  .editable {
+    height: auto;
+
+    &.expand {
+      min-height: 80px;
+    }
+  }
+
+  .toolbar {
+    display: none;
+    margin-top: 10px;
+
+    &.visible {
+      display: block;
+    }
+
+    a {
+      text-decoration: none;
     }
   }
 }

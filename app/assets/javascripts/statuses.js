@@ -1,11 +1,25 @@
 (function ($) {
-    var $status_form = $('form#new_status'),
-        $status_editable = $('#new_status_editable', $status_form),
-        $status_form_toolbar = $('.toolbar', $status_form),
-        status_editable_placeholder = 'What\'s happening?';
+    var $status_form = $('form.js-status-form'),
+        $status_content = $('.js-status-content', $status_form),
+        $status_editable_content = $('.editable', $status_form),
+        $status_toolbar = $('.toolbar', $status_form),
+        $submit = $(':submit', $status_form),
+        status_editable_placeholder = 'What\'s happening?',
+        reset_status_form;
+
+    reset_status_form = function () {
+        $status_content.val('');
+        $status_editable_content.text(status_editable_placeholder).removeClass('expand');
+        $status_toolbar.removeClass('visible');
+        $submit.prop('disabled', true);
+    };
 
     if (App.user_signed_in) {
-        $status_editable.on('click', function () {
+        $status_form.on('ajax:complete', function () {
+            reset_status_form();
+        });
+
+        $status_editable_content.on('click', function () {
             var $this = $(this);
 
             if ($.trim($this.text()) == status_editable_placeholder) {
@@ -14,24 +28,21 @@
 
             $this.addClass('expand');
 
-            $status_form_toolbar.show();
+            $status_toolbar.addClass('visible');
         }).on('keyup', function () {
             var $this = $(this),
-                status_editable_text = $.trim($this.text());
+                status_editable_content = $.trim($this.text());
 
-            $(':submit', $status_form).prop('disabled', !status_editable_text.length);
+            $submit.prop('disabled', !status_editable_content.length);
 
-            if (status_editable_text.length) {
-                $('#status_text').val(status_editable_text);
+            if (status_editable_content.length) {
+                $status_content.val(status_editable_content);
             }
         });
 
         $(document).on('click', function (event) {
-            // reset status form
             if (!$(event.target).closest($status_form).length) {
-                $status_editable.text(status_editable_placeholder).removeClass('expand');
-                $status_form_toolbar.hide();
-                $(':submit', $status_form).prop('disabled', true);
+                reset_status_form();
             }
         });
     }
