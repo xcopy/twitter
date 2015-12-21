@@ -48,6 +48,6 @@
                               | Poll
                     .col-md-3
                       .text-right = f.submit 'Tweet', class: 'btn btn-primary', disabled: true
-      = render 'users/feed', statuses: current_user.feed
+      = render 'users/feed', feed: current_user.feed
   .col-md-3
     = render 'users/who_to_follow'
