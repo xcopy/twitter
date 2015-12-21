@@ -1,47 +1,80 @@
 (function ($) {
     var $status_form = $('form.js-status-form'),
-        $status_content = $('.js-status-content', $status_form),
-        $status_editable_content = $('.editable', $status_form),
+        $status_modal = $('#status'),
+        $status_real_content = $('.js-real-status-content', $status_form),
+        $status_editable_content = $('.js-editable-status-content', $status_form),
         $status_toolbar = $('.toolbar', $status_form),
         $submit = $(':submit', $status_form),
         status_editable_placeholder = 'What\'s happening?',
         reset_status_form;
 
     reset_status_form = function () {
-        $status_content.val('');
+        // reset textarea value
+        $status_real_content.val('');
+        // reset editable div
         $status_editable_content.text(status_editable_placeholder).removeClass('expand');
+        // hide toolbar
         $status_toolbar.removeClass('visible');
+        // disable submit button
         $submit.prop('disabled', true);
+
+        if ($status_modal.hasClass('in')) {
+            // hide modal
+            $status_modal.modal('hide');
+        }
     };
 
     if (App.user_signed_in) {
+        // nav "Tweet" button click handler
+        $('.js-nav-new-status').on('click', function (event) {
+            event.preventDefault();
+            $status_modal.modal('show');
+        });
+
+        // reset status form when modal hidden
+        $status_modal.on('hidden.bs.modal', function () {
+            reset_status_form();
+        });
+
+        // reset status form when request complete
         $status_form.on('ajax:complete', function () {
             reset_status_form();
         });
 
+        // when editable div is "focused"
         $status_editable_content.on('click', function () {
             var $this = $(this);
 
+            // "hide placeholder"
             if ($.trim($this.text()) == status_editable_placeholder) {
                 $this.empty();
             }
 
-            $this.addClass('expand');
-
-            $status_toolbar.addClass('visible');
+            // if div is in home page
+            if ($this.closest('.home').length) {
+                // expand it
+                $this.addClass('expand');
+                // show toolbar
+                $status_toolbar.addClass('visible');
+            }
+        // when editable div contents "changed"
         }).on('keyup', function () {
             var $this = $(this),
                 status_editable_content = $.trim($this.text());
 
+            // disable/enable submit button
             $submit.prop('disabled', !status_editable_content.length);
 
+            // set textarea value
             if (status_editable_content.length) {
-                $status_content.val(status_editable_content);
+                $status_real_content.val(status_editable_content);
             }
         });
 
+        // when editable div is "unfocused"
         $(document).on('click', function (event) {
-            if (!$(event.target).closest($status_form).length) {
+            // modal is hidden & clicked happen out of status form
+            if (!$status_modal.hasClass('in') && !$(event.target).closest($status_form).length) {
                 reset_status_form();
             }
         });

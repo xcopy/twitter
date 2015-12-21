@@ -1,0 +1,22 @@
+= form_for current_user.statuses.new, url: user_statuses_path(current_user, :js), remote: true, html: {novalidate: true, class: 'js-status-form'} do |f|
+  = f.text_area :content, class: 'hide js-real-status-content', required: true
+  .js-editable-status-content.editable.form-control contenteditable="true" What's happening?
+  .toolbar
+    .row
+      .col-md-9
+        .form-control-static
+          .row
+            .col-md-4
+              a href="#"
+                =' icon(:camera)
+                | Media
+            .col-md-4
+              a href="#"
+                =' icon('map-marker')
+                | Location
+            .col-md-4
+              a href="#"
+                =' icon('pie-chart')
+                | Poll
+      .col-md-3
+        .text-right = f.submit 'Tweet', class: 'btn btn-primary', disabled: true

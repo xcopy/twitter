@@ -223,23 +223,30 @@ a {
     .form {
       margin-left: 53px;
     }
+
+    .editable {
+      height: auto;
+
+      &.expand {
+        min-height: 80px;
+      }
+    }
+
+    .toolbar {
+      display: none;
+
+      &.visible {
+        display: block;
+      }
+    }
   }
 
   .editable {
-    height: auto;
-
-    &.expand {
-      min-height: 80px;
-    }
+    height: 80px;
   }
 
   .toolbar {
-    display: none;
     margin-top: 10px;
-
-    &.visible {
-      display: block;
-    }
 
     a {
       text-decoration: none;
