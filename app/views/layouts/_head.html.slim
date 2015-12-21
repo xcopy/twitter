@@ -4,5 +4,6 @@ head
   = csrf_meta_tags
   javascript:
     window.App = {
-      user_signed_in: #{user_signed_in?}
+      user_signed_in: #{user_signed_in?},
+      current_user: #{raw current_user.to_json}
     };
