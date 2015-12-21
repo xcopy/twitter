@@ -24,6 +24,10 @@ body {
   padding-top: 70px;
 }
 
+[contenteditable="true"] {
+  cursor: auto;
+}
+
 .cut {
   overflow: hidden;
   text-overflow: ellipsis;
@@ -96,6 +100,10 @@ a {
 .feed {
   .panel {
     cursor: pointer;
+
+    .panel-heading {
+      cursor: default;
+    }
 
     .status {
       .details {
@@ -196,5 +204,39 @@ a {
     height: 115px;
     overflow: hidden;
     margin-bottom: 15px;
+  }
+}
+
+.home-tweet-box {
+  @extend .clearfix;
+  position: relative;
+
+  .user {
+    position: absolute;
+    width: 48px;
+    text-align: right;
+    top: 0;
+    left: 0;
+  }
+
+  .form {
+    margin-left: 53px;
+
+    #new_status_editable {
+      height: auto;
+
+      &.expand {
+        min-height: 80px;
+      }
+    }
+
+    .toolbar {
+      display: none;
+      margin-top: 10px;
+
+      a {
+        text-decoration: none;
+      }
+    }
   }
 }

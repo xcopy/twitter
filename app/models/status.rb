@@ -8,4 +8,6 @@ class Status < ActiveRecord::Base
   after_create do |record|
     record.user.increment!(:statuses_count)
   end
+
+  validates_presence_of :text
 end

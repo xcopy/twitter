@@ -23,8 +23,31 @@
     .feed.stream
       .panel.panel-default
         .panel-heading
-          / todo
-          input.form-control type="text" placeholder="What's happening?"
+          .home-tweet-box
+            .user = image_tag current_user.avatar.url(:thumb), class: 'avatar thumb', alt: current_user.title
+            .form
+              = form_for @status, url: user_statuses_path(current_user, :js), remote: true, html: {novalidate: true} do |f|
+                = f.text_area :text, class: :hide, required: true
+                #new_status_editable.form-control contenteditable="true" What's happening?
+                .toolbar
+                  .row
+                    .col-md-9
+                      .form-control-static
+                        .row
+                          .col-md-4
+                            a href="#"
+                              =' icon(:camera)
+                              | Media
+                          .col-md-4
+                            a href="#"
+                              =' icon('map-marker')
+                              | Location
+                          .col-md-4
+                            a href="#"
+                              =' icon('pie-chart')
+                              | Poll
+                    .col-md-3
+                      .text-right = f.submit 'Tweet', class: 'btn btn-primary', disabled: true
       = render 'users/feed', statuses: current_user.feed
   .col-md-3
     = render 'users/who_to_follow'
