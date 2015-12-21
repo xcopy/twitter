@@ -1,3 +1,3 @@
 (function ($) {
-    $('.js-follow-<%= @other_user.id %>').replaceWith('<%= escape_javascript render('users/button_unfollow', user: @other_user) %>');
+    $('.js-follow-<%= @other_user.id %>').replaceWith('<%= j render('users/button_unfollow', user: @other_user) %>');
 })(jQuery);
