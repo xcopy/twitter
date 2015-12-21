@@ -9,5 +9,5 @@ class Status < ActiveRecord::Base
     record.user.increment!(:statuses_count)
   end
 
-  validates_presence_of :text
+  validates_presence_of :content
 end

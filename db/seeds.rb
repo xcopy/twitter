@@ -41,7 +41,7 @@ User.all.each do |user|
   rand(11..20).times do
     ts = Time.zone.now - [rand(1..3).days, rand(1..23).hours, rand(1..59).minutes].sample
     user.statuses.create({
-      text: Faker::Lorem.paragraph(2, true, 2),
+      content: Faker::Lorem.paragraph(2, true, 2),
       created_at: ts,
       updated_at: ts
     })

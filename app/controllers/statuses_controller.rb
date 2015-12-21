@@ -13,6 +13,6 @@ class StatusesController < ApplicationController
   private
 
   def status_params
-    params.require(:status).permit(:text)
+    params.require(:status).permit(:content)
   end
 end

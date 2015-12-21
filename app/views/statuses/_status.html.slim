@@ -8,6 +8,6 @@
           .text-right
             = link_to user_status_path(status.user, status), class: :ts do
               = time_tag status.created_at, data: {livestamp: status.created_at.iso8601}
-      .text = status.text
-      / = simple_format status.text, {class: :text}, wrapper_tag: :div
+      .content = status.content
+      / = simple_format status.content, {class: :content}, wrapper_tag: :div
       = render 'statuses/details', status: status

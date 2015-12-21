@@ -8,7 +8,7 @@
               .u-block = username_link(@user)
             .col-md-3
               .text-right = follow_link(@user)
-          .big.text = @status.text
+          .big.content = @status.content
           = render 'statuses/details', status: @status
 
     = render 'shared/trends', inline: true
