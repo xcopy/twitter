@@ -14,14 +14,15 @@
           span>class="text-muted" Have an account?
           = link_to 'Log in', new_user_session_path
 
-#status.modal.fade
-  .modal-dialog
-    .modal-content
-      .modal-header
-        = button_tag '&times;'.html_safe, type: :button, class: :close, data: {dismiss: :modal}
-        .text-center.text-muted Compose new tweet
-      .modal-body
-        .status-form = render 'statuses/form'
+- if user_signed_in?
+  #status.modal.fade
+    .modal-dialog
+      .modal-content
+        .modal-header
+          = button_tag '&times;'.html_safe, type: :button, class: :close, data: {dismiss: :modal}
+          .text-center.text-muted Compose new tweet
+        .modal-body
+          .status-form = render 'statuses/form'
 
 header.navbar.navbar-default.navbar-fixed-top
   .container
