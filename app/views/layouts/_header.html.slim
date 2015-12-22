@@ -1,4 +1,4 @@
-#signup.modal.fade
+#modal-signup.modal.fade
   .modal-dialog
     .modal-content
       .modal-header
@@ -15,7 +15,7 @@
           = link_to 'Log in', new_user_session_path
 
 - if user_signed_in?
-  #status.modal.fade
+  #modal-status-form.modal.fade
     .modal-dialog
       .modal-content
         .modal-header
@@ -31,10 +31,12 @@ header.navbar.navbar-default.navbar-fixed-top
         li = link_to "#{icon(user_signed_in? ? :home : :twitter)} Home".html_safe, authenticated_root_path
       - if user_signed_in?
         .navbar-right style="margin-left: 15px; margin-right: 0;"
-          button.btn.btn-primary.navbar-btn.js-nav-new-status type="button" Tweet
+          button.btn.btn-primary.navbar-btn type="button" data-toggle="modal" data-target="#modal-status-form"
+            | Tweet
         .navbar-right
           .dropdown
-            a.navbar-btn.btn-block href="#" data-toggle="dropdown" = image_tag current_user.avatar.url(:thumb), class: 'avatar mini', alt: current_user.title
+            a.navbar-btn.btn-block href="#" data-toggle="dropdown"
+              = image_tag current_user.avatar.url(:thumb), class: 'avatar mini', alt: current_user.title
             ul.dropdown-menu
               li
                 = link_to user_path(current_user) do

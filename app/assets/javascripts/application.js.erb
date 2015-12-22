@@ -20,7 +20,7 @@
 
     $(document).ajaxError(function (event, xhr) {
         if (xhr.status == 401) {
-            $('#signup').modal('show');
+            $('#modal-signup').modal('show');
         }
     });
 })(jQuery);

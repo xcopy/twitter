@@ -25,12 +25,6 @@
     };
 
     if (App.user_signed_in) {
-        // nav "Tweet" button click handler
-        $('.js-nav-new-status').on('click', function (event) {
-            event.preventDefault();
-            $status_modal.modal('show');
-        });
-
         // reset status form when modal hidden
         $status_modal.on('hidden.bs.modal', function () {
             reset_status_form();
