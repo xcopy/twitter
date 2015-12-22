@@ -1,6 +1,6 @@
 (function ($) {
     var $status_form = $('form.js-status-form'),
-        $status_modal = $('#status'),
+        $status_modal = $('#modal-status-form'),
         $status_real_content = $('.js-real-status-content', $status_form),
         $status_editable_content = $('.js-editable-status-content', $status_form),
         $status_toolbar = $('.toolbar', $status_form),
@@ -71,6 +71,39 @@
             if (!$status_modal.hasClass('in') && !$(event.target).closest($status_form).length) {
                 reset_status_form();
             }
+        // when "Delete tweet" clicked
+        }).on('click', '.js-delete-status', function (event) {
+            var id = $(this).data('status-id');
+
+            event.preventDefault();
+
+            bootbox.dialog({
+                title: 'Are you sure you want to delete this Tweet?',
+                message: '---', // todo
+                buttons: {
+                    cancel: {
+                        label: 'Cancel',
+                        className: 'btn-default'
+                    },
+                    danger: {
+                        label: 'Delete',
+                        className: 'btn-danger',
+                        callback: function () {
+                            $.ajax({
+                                url: Routes.user_status_path(App.current_user['screen_name'], id, {format: 'js'}),
+                                type: 'DELETE',
+                                complete: function () {
+                                    if ($('.feed').length) {
+                                        $('.feed .panel[data-status-id="' + id + '"]').remove();
+                                    } else {
+                                        window.location.href = Routes.authenticated_root_path();
+                                    }
+                                }
+                            });
+                        }
+                    }
+                }
+            });
         });
     }
 

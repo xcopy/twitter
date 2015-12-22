@@ -9,5 +9,9 @@ class Status < ActiveRecord::Base
     record.user.increment!(:statuses_count)
   end
 
+  after_destroy do |record|
+    record.user.decrement!(:statuses_count)
+  end
+
   validates_presence_of :content
 end

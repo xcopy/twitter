@@ -31,7 +31,7 @@ Rails.application.routes.draw do
         get :following, :followers
       end
 
-      resources :statuses, only: [:show, :create], constraints: {id: /\d+/}
+      resources :statuses, only: [:show, :create, :destroy], constraints: {id: /\d+/}
     end
   end
 
