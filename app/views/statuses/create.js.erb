@@ -1,3 +1,6 @@
 (function ($) {
-    $('.feed .panel:first-child').after('<%= j render(@status) %>');
+    var $panels = $('.feed .panel:not(:has(.panel-heading))'),
+        $panel = $($panels.get(0));
+
+    $panel.before('<%= j render(@status) %>');
 })(jQuery);
