@@ -31,7 +31,13 @@ Rails.application.routes.draw do
         get :following, :followers
       end
 
-      resources :statuses, only: [:show, :create, :destroy], constraints: {id: /\d+/}
+      resources :statuses, only: [:show, :create, :destroy], constraints: {id: /\d+/} do
+        member do
+          get :favorited
+          post :like, to: 'likes#create'
+          post :unlike, to: 'likes#destroy'
+        end
+      end
     end
   end
 

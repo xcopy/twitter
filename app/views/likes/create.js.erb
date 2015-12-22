@@ -1,0 +1,3 @@
+(function ($) {
+    $('.js-like-<%= @status.id %>').replaceWith('<%= j render('statuses/button_unlike', status: @status) %>');
+})(jQuery);

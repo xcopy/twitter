@@ -1,45 +1,50 @@
 .details
-  .stats
-    / todo
-    .row
-      .col-md-2
-        = link_to '#' do
-          .text-muted Retweets
-          h4 10
-      .col-md-2
-        = link_to '#' do
-          .text-muted Likes
-          h4 20
-      .col-md-8
+  - if status.show_stats?
+    .stats
+      .row
+        - if status.retweets_count > 0
+          .col-md-2
+            = link_to '#' do
+              .text-muted Retweets
+              h4 = status.retweets_count
+        - if status.likes_count > 0
+          .col-md-2
+            = link_to favorited_user_status_path(status.user, status), data: {toggle: :modal, target: '#modal-status-favorited'} do
+              .text-muted Likes
+              h4 = status.likes_count
+        div class="col-md-#{status.retweets_count > 0 && status.likes_count > 0 ? 8 : 10}"
+          | ---
   .datetime = time_tag status.created_at, status.created_at.strftime('%l:%M %p - %e %b %Y')
 
 / todo
 .actions
-  .text-muted
-    .row
-      .col-md-2
-        = icon(:reply)
-      .col-md-2
-        = icon(:retweet)
-      .col-md-2
-        = icon(:heart)
-      .col-md-6
-        .dropdown
-          = link_to icon('ellipsis-h'), '#', data: {toggle: :dropdown}
-          ul.dropdown-menu
-            li
-              a href="#" Copy link to tweet
-            - if user_signed_in?
-              - if status.user_id == current_user.id
-                li
-                  a href="#" Pin to your profile page
-                li
-                  a href="#" class="js-delete-status" data-status-id="#{status.id}"
-                    | Delete tweet
-              - else
-                li
-                  a href="#" Mute
-                li
-                  a href="#" Block
-                li
-                  a href="#" Report
+  .row
+    .col-md-2
+      = link_to icon(:reply), '#'
+    .col-md-2
+      = link_to icon(:retweet), '#'
+    .col-md-2
+      - if current_user.liked?(status)
+        = render 'statuses/button_unlike', status: status
+      - else
+        = render 'statuses/button_like', status: status
+    .col-md-6
+      .dropdown
+        = link_to icon('ellipsis-h'), '#', data: {toggle: :dropdown}
+        ul.dropdown-menu
+          li
+            a href="#" Copy link to tweet
+          - if user_signed_in?
+            - if status.user_id == current_user.id
+              li
+                a href="#" Pin to your profile page
+              li
+                a href="#" class="js-delete-status" data-status-id="#{status.id}"
+                  | Delete tweet
+            - else
+              li
+                a href="#" Mute
+              li
+                a href="#" Block
+              li
+                a href="#" Report

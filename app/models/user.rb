@@ -47,7 +47,34 @@ class User < ActiveRecord::Base
     super(defaults.merge(options || {}))
   end
 
+  # statuses
   has_many :statuses
+
+  def feed
+    user_ids = following.pluck(:id)
+    user_ids << id
+
+    Status.includes(:user).where(user_id: user_ids)
+
+    # statuses + Status.includes(:user).where(user: following)
+  end
+
+  # likes
+  has_many :likes
+  has_many :favorite_statuses, through: :likes, source: :status
+
+  def liked?(status)
+    favorite_statuses.include?(status)
+  end
+
+  def like(status)
+    likes.create!(status: status)
+  end
+
+  def unlike(status)
+    like = likes.where(status: status).take!
+    like.destroy!
+  end
 
   # relationships
   has_many :active_relationships, class_name: 'Relationship', foreign_key: :follower_id
@@ -80,15 +107,6 @@ class User < ActiveRecord::Base
         .where(id: users_to_follow_ids)
         .where.not(id: following_ids)
     end
-  end
-
-  def feed
-    user_ids = following.pluck(:id)
-    user_ids << id
-
-    Status.includes(:user).where(user_id: user_ids)
-
-    # statuses + Status.includes(:user).where(user: following)
   end
 
   def title

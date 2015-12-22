@@ -1,7 +1,10 @@
 class Status < ActiveRecord::Base
   belongs_to :user
 
-  default_scope {order('created_at DESC')}
+  has_many :likes
+  has_many :favorited, through: :likes, source: :user
+
+  default_scope {order(created_at: :desc)}
 
   delegate :full_name, :screen_name, to: :user, prefix: true, allow_nil: true
 
@@ -14,4 +17,13 @@ class Status < ActiveRecord::Base
   end
 
   validates_presence_of :content
+
+  # todo: remove
+  def retweets_count
+    0
+  end
+
+  def show_stats?
+    (likes_count || retweets_count) > 0
+  end
 end

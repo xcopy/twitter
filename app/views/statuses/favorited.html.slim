@@ -1,0 +1,14 @@
+.modal-header
+  = close_modal
+  .text-center.text-muted
+    | Liked #{@status.likes_count} times
+.modal-body
+  .stream
+    - @status.favorited.each do |user|
+      .panel.panel-default
+        .panel-body
+          .row
+            .col-md-9 = username_link(user, :thumb)
+            .col-md-3
+              .text-right = follow_link(user)
+          .description = user.description

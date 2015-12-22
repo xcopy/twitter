@@ -151,6 +151,14 @@ a {
 
   .actions {
     margin-top: 15px;
+
+    a {
+      @extend .text-muted;
+
+      &.liked {
+        color: #dd2e44;
+      }
+    }
   }
 }
 

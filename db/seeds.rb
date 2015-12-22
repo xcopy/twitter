@@ -53,5 +53,8 @@ User.all.each do |user|
   rand(1..10).times do
     sample_user = User.where.not(id: user.id).sample
     user.follow(sample_user) unless user.following?(sample_user)
+
+    sample_status = Status.all.sample
+    user.like(sample_status) unless user.liked?(sample_status)
   end
 end
