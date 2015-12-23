@@ -1,3 +1,12 @@
 (function ($) {
-    $('.js-unfollow-<%= @other_user.id %>').replaceWith('<%= j render('users/button_follow', user: @other_user) %>');
+    var user_id = <%= @other_user.id %>,
+        timeout = setTimeout(function () {
+            $.get(Routes.who_to_follow_path({format: 'js'}));
+        }, 2000);
+
+    $('.js-unfollow-' + user_id).replaceWith('<%= j render('users/button_follow', user: @other_user) %>');
+
+    $(document).on('click', '.js-follow-' + user_id, function () {
+        clearTimeout(timeout);
+    });
 })(jQuery);
