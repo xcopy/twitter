@@ -1,7 +1,7 @@
 class Status < ActiveRecord::Base
   belongs_to :user
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
   has_many :favorited, through: :likes, source: :user
 
   default_scope {order(created_at: :desc)}
