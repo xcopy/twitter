@@ -10,5 +10,5 @@
         .panel-body
           .card
             .description
-              = truncate(user.description, length: 200) unless user.description?
+              = truncate(user.description, length: 200) if user.description?
             .text-right = follow_link(user)
