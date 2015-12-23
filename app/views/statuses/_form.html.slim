@@ -8,15 +8,15 @@
           .row
             .col-md-4
               a href="#"
-                =' icon(:camera)
+                => icon(:camera)
                 | Media
             .col-md-4
               a href="#"
-                =' icon('map-marker')
+                => icon('map-marker')
                 | Location
             .col-md-4
               a href="#"
-                =' icon('pie-chart')
+                => icon('pie-chart')
                 | Poll
       .col-md-3
         .text-right = f.submit 'Tweet', class: 'btn btn-primary', disabled: true
