@@ -12,7 +12,7 @@ header.navbar.navbar-default.navbar-fixed-top
         .navbar-right
           .dropdown
             a.navbar-btn.btn-block href="#" data-toggle="dropdown"
-              = image_tag current_user.avatar.url(:thumb), class: 'avatar mini', alt: current_user.title
+              = image_tag current_user.avatar.url(:thumb), class: 'avatar thumb', alt: current_user.title
             ul.dropdown-menu
               li
                 = link_to user_path(current_user) do

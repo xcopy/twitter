@@ -28,6 +28,10 @@ class User < ActiveRecord::Base
   has_one :avatar, as: :resource, class_name: 'User::Avatar', dependent: :destroy
   accepts_nested_attributes_for :avatar
 
+  def avatar
+    super || User::Avatar.new
+  end
+
   # statuses
   has_many :statuses
 

@@ -2,7 +2,7 @@ class User::Avatar < Asset
   URL = '/uploads/:rails_env/:resource_type/:resource_id/avatar/:style.:extension'
 
   has_attached_file :attachment,
-    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
+    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_bigger.png',
     path: ":rails_root/public#{URL}",
     url: URL,
     styles: {
