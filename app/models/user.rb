@@ -24,12 +24,17 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :screen_name
 
-  # avatar
-  has_one :avatar, as: :resource, class_name: 'User::Avatar', dependent: :destroy
-  accepts_nested_attributes_for :avatar
+  # avatar & banner
+  %w(avatar banner).each do |association|
+    klass = "User::#{association.classify}"
+    has_one association.to_sym, as: :resource, class_name: klass, dependent: :destroy
+    accepts_nested_attributes_for association.to_sym
 
-  def avatar
-    super || User::Avatar.new
+    eval <<-EOF
+      def #{association}
+        super || #{klass}.new
+      end
+    EOF
   end
 
   # statuses
