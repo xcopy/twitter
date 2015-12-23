@@ -24,23 +24,18 @@ class User < ActiveRecord::Base
   extend FriendlyId
   friendly_id :screen_name
 
-  # avatar
-  AVATAR_URL = "/uploads/#{Rails.env}/:class/:id/:attachment/:style.:extension"
+  # avatar & banner
+  %w(avatar banner).each do |association|
+    klass = "User::#{association.classify}"
+    has_one association.to_sym, as: :resource, class_name: klass, dependent: :destroy
+    accepts_nested_attributes_for association.to_sym
 
-  has_attached_file :avatar,
-    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
-    path: ":rails_root/public#{AVATAR_URL}",
-    url: AVATAR_URL,
-    styles: {
-      bigger: '73x73#',
-      normal: '48x48#',
-      thumb: '34x34#',
-      mini: '24x24#'
-    }
-
-  # validations
-  # todo: other validates_*
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+    eval <<-EOF
+      def #{association}
+        super || #{klass}.new
+      end
+    EOF
+  end
 
   # statuses
   has_many :statuses

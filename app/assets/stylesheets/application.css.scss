@@ -74,7 +74,20 @@ a {
 .avatar {
   border-radius: 5px;
 
+  &.bigger {
+    @include square(73px);
+  }
+
+  &.normal {
+    @include square(48px);
+  }
+
+  &.thumb {
+    @include square(34px);
+  }
+
   &.mini {
+    @include square(24px);
     border-radius: 4px;
   }
 }

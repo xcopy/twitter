@@ -11,7 +11,20 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20151222151527) do
+ActiveRecord::Schema.define(version: 20151223063305) do
+
+  create_table "assets", force: :cascade do |t|
+    t.integer  "resource_id",             limit: 4
+    t.string   "resource_type",           limit: 255
+    t.string   "attachment_file_name",    limit: 255
+    t.string   "attachment_content_type", limit: 255
+    t.integer  "attachment_file_size",    limit: 4
+    t.datetime "attachment_updated_at"
+    t.datetime "created_at",                          null: false
+    t.datetime "updated_at",                          null: false
+  end
+
+  add_index "assets", ["resource_type", "resource_id"], name: "index_assets_on_resource_type_and_resource_id", using: :btree
 
   create_table "likes", force: :cascade do |t|
     t.integer  "status_id",  limit: 4
@@ -64,10 +77,6 @@ ActiveRecord::Schema.define(version: 20151222151527) do
     t.integer  "followers_count",        limit: 4,     default: 0
     t.integer  "statuses_count",         limit: 4,     default: 0
     t.text     "description",            limit: 65535
-    t.string   "avatar_file_name",       limit: 255
-    t.string   "avatar_content_type",    limit: 255
-    t.integer  "avatar_file_size",       limit: 4
-    t.datetime "avatar_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
