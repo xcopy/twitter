@@ -5,6 +5,10 @@ ActiveRecord::Base.connection.tables.each do |table|
   ActiveRecord::Base.connection.execute("TRUNCATE #{table}")
 end
 
+def avatar_url(num = 0)
+  URI.parse("http://abs.twimg.com/sticky/default_profile_images/default_profile_#{num}.png")
+end
+
 # register some fake users
 user_params = {
   description: Faker::Lorem.paragraph(2, true),
@@ -17,7 +21,7 @@ users = [
     full_name: 'Kairat Jenishev',
     screen_name: 'xcopy',
     email: 'xcopy@gmail.com',
-    avatar: URI.parse('http://abs.twimg.com/sticky/default_profile_images/default_profile_0.png')
+    avatar: User::Avatar.new(attachment: avatar_url)
   })
 ]
 
@@ -28,7 +32,7 @@ users = [
     full_name: Faker::Name.name,
     screen_name: screen_name,
     email: Faker::Internet.free_email(screen_name),
-    avatar: URI.parse("http://abs.twimg.com/sticky/default_profile_images/default_profile_#{rand(0..6)}.png")
+    avatar: User::Avatar.new(attachment: avatar_url(rand(0..6)))
   })
 end
 

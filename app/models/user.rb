@@ -25,22 +25,8 @@ class User < ActiveRecord::Base
   friendly_id :screen_name
 
   # avatar
-  AVATAR_URL = "/uploads/#{Rails.env}/:class/:id/:attachment/:style.:extension"
-
-  has_attached_file :avatar,
-    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
-    path: ":rails_root/public#{AVATAR_URL}",
-    url: AVATAR_URL,
-    styles: {
-      bigger: '73x73#',
-      normal: '48x48#',
-      thumb: '34x34#',
-      mini: '24x24#'
-    }
-
-  # validations
-  # todo: other validates_*
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
+  has_one :avatar, as: :resource, class_name: 'User::Avatar', dependent: :destroy
+  accepts_nested_attributes_for :avatar
 
   # statuses
   has_many :statuses
