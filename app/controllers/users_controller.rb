@@ -11,6 +11,10 @@ class UsersController < ApplicationController
     @other_user = User.find(params[:id])
   end
 
+  def show
+    @feed = @user.statuses.page(params[:page])
+  end
+
   def following
     @following = @user.following
   end

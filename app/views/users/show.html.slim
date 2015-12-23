@@ -1,6 +1,7 @@
 .row
   .col-md-8
     .feed.stream
-      = render 'users/feed', feed: @user.statuses
+      = render 'users/feed', feed: @feed
+    .text-center = paginate @feed
   .col-md-4
     = render 'users/who_to_follow'

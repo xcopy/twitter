@@ -1,26 +1,8 @@
 class User < ActiveRecord::Base
+  # devise
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
-
-  extend FriendlyId
-  friendly_id :screen_name
-
-  AVATAR_URL = "/uploads/#{Rails.env}/:class/:id/:attachment/:style.:extension"
-
-  has_attached_file :avatar,
-    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
-    path: ":rails_root/public#{AVATAR_URL}",
-    url: AVATAR_URL,
-    styles: {
-      bigger: '73x73#',
-      normal: '48x48#',
-      thumb: '34x34#',
-      mini: '24x24#'
-    }
-
-  # todo: other validates_*
-  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # Virtual attribute for authenticating by either :screen_name or :email
   # This is in addition to a real persisted field like 'screen_name'
@@ -38,14 +20,27 @@ class User < ActiveRecord::Base
     end
   end
 
-  def as_json(options = nil)
-    defaults = {
-      only: [:id, :full_name, :screen_name],
-      # methods: [...]
+  # friendly_id
+  extend FriendlyId
+  friendly_id :screen_name
+
+  # avatar
+  AVATAR_URL = "/uploads/#{Rails.env}/:class/:id/:attachment/:style.:extension"
+
+  has_attached_file :avatar,
+    default_url: '//abs.twimg.com/sticky/default_profile_images/default_profile_0_:style.png',
+    path: ":rails_root/public#{AVATAR_URL}",
+    url: AVATAR_URL,
+    styles: {
+      bigger: '73x73#',
+      normal: '48x48#',
+      thumb: '34x34#',
+      mini: '24x24#'
     }
 
-    super(defaults.merge(options || {}))
-  end
+  # validations
+  # todo: other validates_*
+  validates_attachment_content_type :avatar, content_type: /\Aimage\/.*\Z/
 
   # statuses
   has_many :statuses
@@ -109,7 +104,18 @@ class User < ActiveRecord::Base
     end
   end
 
+  # methods
   def title
     "#{full_name} (#{screen_name})"
+  end
+
+  # overrides
+  def as_json(options = nil)
+    defaults = {
+      only: [:id, :full_name, :screen_name],
+      # methods: [...]
+    }
+
+    super(defaults.merge(options || {}))
   end
 end

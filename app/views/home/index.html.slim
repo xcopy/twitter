@@ -26,6 +26,7 @@
           .home.status-form
             .user = image_tag current_user.avatar.url(:thumb), class: 'avatar thumb', alt: current_user.title
             .form = render 'statuses/form'
-      = render 'users/feed', feed: current_user.feed
+      = render 'users/feed', feed: @feed
+    .text-center = paginate @feed
   .col-md-3
     = render 'users/who_to_follow'
