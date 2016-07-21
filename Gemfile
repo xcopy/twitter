@@ -76,9 +76,12 @@ group :development do
   # Use Chrome extension for development. Read more: https://github.com/dejan/rails_panel
   gem 'meta_request'
 
-  gem 'foreman', '~> 0.78.0'
+  gem 'foreman', '~> 0.82.0'
+
+  gem 'zeus', require: false
+
   # this gems should be installed standalone
-  # zeus, mailcatcher, rails_best_practices
+  # mailcatcher, rails_best_practices
 end
 
 source 'https://rails-assets.org' do
