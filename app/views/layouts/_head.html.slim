@@ -2,6 +2,7 @@ head
   title Twitter
   = stylesheet_link_tag 'application', media: :all
   = csrf_meta_tags
+  = favicon_link_tag 'https://abs.twimg.com/favicons/favicon.ico'
   javascript:
     window.App = {
       user_signed_in: #{user_signed_in?},

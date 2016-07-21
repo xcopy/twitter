@@ -8,7 +8,7 @@
 .idea/
 
 .zeus.sock
-public/rails_best_practices.html
+rails_best_practices_output.html
 public/uploads/
 app/assets/javascripts/routes.js
 
